@@ -1,29 +1,28 @@
 const db = require('../data/dbconfig');
 
 module.exports = {
-  addUser,
-  login,
-  showUsers,
-  getUserByID
+add,
+find,
+findByID
 }
 
-function getUserByID(id) {
-  return db('users')
+function findByID(id) {
+  return db('accounts')
     .where({id})
     .first()
 }
 
-function addUser(user) {
-  return db('users')
+function add(user) {
+  return db('accounts')
     .insert(user, "id")
     .then(ids => {
       const [id] = ids
-      return getUserByID(id)
+      return findByID(id)
     })
 }
 
-function showUsers(){
-  return db('users')
+function find(){
+  return db('accounts')
     .select('id', 'username', 'password');
 }
 
