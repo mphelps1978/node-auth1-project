@@ -20,7 +20,7 @@ module.exports = (req, res, next) => {
       })
       .catch(({name, message, stack}) => {
         console.log(name, message, stack);
-        
+
         res.status(500).json({error: 'There was an error'});
       });
     }else {
