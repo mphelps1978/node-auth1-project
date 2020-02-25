@@ -6,6 +6,8 @@ const middleware = require('./api/mware')
 
 const apiRouter = require('./api/apiRouter');
 
+const knex = require('./data/dbconfig')
+
 const server = express();
 
 server.use(
