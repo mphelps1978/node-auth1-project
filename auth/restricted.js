@@ -8,7 +8,5 @@ module.exports = (req, res, next) => {
     next();
     }else {
       res.status(400).json({message: 'You must be logged in to do that'})
-
     }
-
 }
