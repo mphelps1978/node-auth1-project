@@ -25,7 +25,7 @@ server.use(
       knex,
       tablename: "sessionStore",
       createTable: true,
-      sidfieldname: "sidID",
+      sidfieldname: "sid",
       clearInterval: 1000 * 60 * 45,
     }),
   })
@@ -33,6 +33,20 @@ server.use(
 middleware(server)
 
 server.use ('/api', apiRouter)
+
+server.get('/logout', (req, res) => {
+  if(req.session) {
+    req.session.destroy(err => {
+      if(err){
+        res.status(500).json({message: 'There was an error logging you out.'})
+      } else{
+        res.status(200).json({message: 'See you next time!'})
+      }
+    });
+  } else {
+    res.status(200).json({message: 'You were never here'})
+  }
+})
 
 
 
